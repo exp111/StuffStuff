@@ -3,11 +3,38 @@
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
+    <style>
+        .red
+        {
+            color: red;
+        }
+
+        .orange
+        {
+            color: orange;
+        }
+
+        .green
+        {
+            color: green;;
+        }
+
+        .blue
+        {
+            color: blue;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.13/js/dataTables.bootstrap4.min.js"></script>
 </head>
 <body>
+    <ul>
+        <li><span class="red">Red</span>: Bad, useless options, or options which are extremely situational.</li>
+        <li><span class="orange">Orange</span>: OK options, or useful options that only apply in rare circumstances</li>
+        <li><span class="green">Green</span>: Good options.</li>
+        <li><span class="blue">Blue</span>: Fantastic options, often essential to the function of your character.</li>
+    </ul>
     <div class="container">
     <div class="row">
     <div class="col-4">
@@ -21,21 +48,59 @@
             </thead>
             <!--               BODY             -->
             <tbody>
-            <tr class="table-primary">
+            <tr 
+            title="The pinnacle of beasts. An absolute ton of damage, and the grapple mechanic on the t-rex's bite can easily win fights against single foes." 
+            class="table-primary">
                 <th>Tyrannosaurus Rex</th>
                 <td>8</td>
             </tr>
-            <tr class="table-primary">
+            <tr 
+            title="Not very exciting, but this is the best option available when you first get access to polymorph."
+            class="table-primary">
                 <th>Giant Ape</th>
                 <td>7</td>
             </tr>
-            <tr class="table-primary">
+            <tr 
+            title="Trampling Charge is the big draw, which might be enough to justify this over the giant ape depending on your play style." 
+            class="table-primary">
                 <th>Mammoth</th>
                 <td>6</td>
             </tr>
-            <tr class="table-primary">
+            <tr 
+            title="The most powerful aquatic combat form available."
+            class="table-primary">
                 <th>Giant Shark</th>
                 <td>5</td>
+            </tr>
+            <tr 
+            title="Weak combat form."
+            class="table-danger">
+                <th>Triceratops</th>
+                <td>5</td>
+            </tr>
+            <tr 
+            title="Weak combat form."
+            class="table-danger">
+                <th>Giant Crocodile</th>
+                <td>5</td>
+            </tr>
+            <tr 
+            title="Weak combat form."
+            class="table-danger">
+                <th>Elephant</th>
+                <td>4</td>
+            </tr>
+            <tr 
+            title="Swallow is tempting, but probably still not enough to make this useful."
+            class="table-warning">
+                <th>Giant Toad</th>
+                <td>1</td>
+            </tr>
+            <tr 
+            title="Extremely fast, making it a tempting scouting option. However, its senses aren't as good as the owl's."
+            class="table-success">
+                <th>Giant Eagle</th>
+                <td>1</td>
             </tr>
             </tbody>
         </table>
@@ -44,6 +109,7 @@
             <iframe id="frame" class="embed-responsive-item"></iframe>
     </div>
     </div>
+    <a href="http://rpgbot.net/dnd5/characters/polymorph.php">Stolen from here</a>
 </div>
 <script>
     function open(value)
