@@ -1,0 +1,83 @@
+<head>
+    <title>D&ampD 5e Polymorph</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.13/js/dataTables.bootstrap4.min.js"></script>
+</head>
+<body>
+    <div class="container">
+    <div class="row">
+    <div class="col-4">
+        <table id="table" class="table table-hover" style="width:100%">
+            <!--               HEAD             -->
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>CR</th>
+            </tr>
+            </thead>
+            <!--               BODY             -->
+            <tbody>
+            <tr class="table-primary">
+                <th>Tyrannosaurus Rex</th>
+                <td>8</td>
+            </tr>
+            <tr class="table-primary">
+                <th>Giant Ape</th>
+                <td>7</td>
+            </tr>
+            <tr class="table-primary">
+                <th>Mammoth</th>
+                <td>6</td>
+            </tr>
+            <tr class="table-primary">
+                <th>Giant Shark</th>
+                <td>5</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col embed-responsive embed-responsive-1by1">
+            <iframe id="frame" class="embed-responsive-item"></iframe>
+    </div>
+    </div>
+</div>
+<script>
+    function open(value)
+    {
+        value = "https://roll20.net/compendium/dnd5e/" + value;
+        var frame = document.getElementById("frame");
+        frame.src = value;
+    }
+
+    function addRowHandlers() {
+        var table = document.getElementById("table");
+        var rows = table.getElementsByTagName("tr");
+        for (i = 1; i < rows.length; i++) {
+            var currentRow = table.rows[i];
+            var createClickHandler = function(row) {
+            return function() {
+                var cell = row.getElementsByTagName("th")[0];
+                open(cell.innerHTML);
+            };
+            };
+            currentRow.onclick = createClickHandler(currentRow);
+        }
+    }
+
+    function onLoad()
+    {
+        $('#table').DataTable({
+        "paging":   false,
+        "info":     false
+    } );
+
+        addRowHandlers();
+    }
+
+    window.onload = onLoad();
+</script>
+</body>
