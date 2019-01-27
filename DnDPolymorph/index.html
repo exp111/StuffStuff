@@ -23,6 +23,17 @@
         {
             color: blue;
         }
+
+        .white
+        {
+            color: white;
+        }
+
+        .border-red:focus
+        {
+            border-color: red;
+            box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, .25);
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
@@ -35,6 +46,13 @@
         <li><span class="green">Green</span>: Good options.</li>
         <li><span class="blue">Blue</span>: Fantastic options, often essential to the function of your character.</li>
     </ul>
+    <div class="input-group" style="position: absolute; right: 5%; top: 5%; width: 20%">
+        <div class="input-group-prepend">
+          <span class="bg-danger input-group-text white" id="hp-label">HP</span>
+        </div>
+        <input class="border-red form-control" type="number" step="1" min="0" aria-describedby="hp-label">
+    </div>
+    
     <div class="container">
     <div class="row">
     <div class="col-4">
