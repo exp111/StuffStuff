@@ -120,7 +120,41 @@
                 <th>Giant Eagle</th>
                 <td>1</td>
             </tr>
-            </tbody>
+            <tr title="Too mobile to use as a disable form, but not mobile enough to use as a scout form." class="table-danger"><th>Baboon</th><td>0</td></tr>
+            <tr title="By the time you get access to polymorph you can use the Giant Badger, which is strictly better." class="table-warning"><th>Badger</th><td>0</td></tr>
+            <tr title="Fantastic scout form. Decent fly speed and blindsight allow you to scout dark areas (including magical darkness). However, echolocation tends to be a bit noisy." class="table-primary"><th>Bat</th><td>0</td></tr>
+            <tr title="Too mobile to use as a disable form, but not mobile enough to use as a scout form." class="table-danger"><th>Cat</th><td>0</td></tr>
+            <tr title="If you need to quickly move through both underwater and dry environments quickly, the crab is a useful choice for a scout. Blindsight is also useful." class="table-warning"><th>Crab</th><td>0</td></tr>
+            <tr title="A tempting disable form since the deer is limited to movement on the ground and their only attack is pitiful. However, the high speed is a problem." class="table-warning"><th>Deer</th><td>0</td></tr>
+            <tr title="A great scout form. With very good fly speed and keen sight, the eagle is a good scout when outdoors* but the owl is strictly better." class="table-success"><th>Eagle</th><td>0</td></tr>
+            <tr title="Rat is a better disable form, and there are other scout forms which work better." class="table-danger"><th>Frog</th><td>0</td></tr>
+            <tr title="Similar to the deer and slightly slower, making it a potential disable form. However* the Charge attack does enough damage to be a potential problem and you'll feel really silly if your target manages to knock someone in your party prone." class="table-danger"><th>Goat</th><td>0</td></tr>
+            <tr title="Functionally identical to the eagle for scouting purposes." class="table-success"><th>Hawk</th><td>0</td></tr>
+            <tr title="Probably the closest thing you will get to a combat form at this CR." class="table-warning"><th>Hyean</th><td>0</td></tr>
+            <tr title="Keen hearing and smell are tempting, but with no special senses or movement modes it's not a go-to option for a scout form." class="table-warning"><th>Jackal</th><td>0</td></tr>
+            <tr title="A climb speed and darkvision are tempting for a scout, and with such slow speed it's a possibility for a disable form despite the climb speed." class="table-success"><th>Lizard</th><td>0</td></tr>
+            <tr title="Underwater the octopus is a great scout. Darkvision and camouflage make it easy to sneak around, and ink cloud provides a fantastic escape mechanism. Don't be tempted to use this is a disable form* as it allows the target to intentionally suffocate themselves out of polymorph while out of water." class="table-warning"><th>Octopus</th><td>0</td></tr>
+            <tr title="Perhaps the best scout option. With astounding 120 ft. darkvision, great fly speed* and both keen hearing and sight* it can handle anything except magical darkness and water." class="table-primary"><th>Owl</th><td>0</td></tr>
+            <tr title="Faster than the octopus and with better darkvision, but not as sneaky. Don't be tempted to use this is a disable form* as it allows the target to intentionally suffocate themselves out of polymorph while out of water." class="table-warning"><th>Quipper</th><td>0</td></tr>
+            <tr title="The perfect disable form. Bad speed, no special movement* and a pitifully weak attack. It's also a passable scout form if only because rats are a common sight which many creatures will ignore." class="table-primary"><th>Rat</th><td>0</td></tr>
+            <tr title="Useful only for mimicry if you need it for some reason." class="table-danger"><th>Raven</th><td>0</td></tr>
+            <tr title="The blindsight is tempting, but at such short range it won't help much." class="table-danger"><th>Scorpion</th><td>0</td></tr>
+            <tr title="A great disable form underwater because it has terrible speed and no attacks." class="table-success"><th>Sea horse</th><td>0</td></tr>
+            <tr title="Darkvision and spider climb are tempting, but flying works better than climbing and other options have better darkvision." class="table-warning"><th>Spider</th><td>0</td></tr>
+            <tr title="The owl is strictly better." class="table-danger"><th>Vulture</th><td>0</td></tr>
+            <tr title="Rat is a better disable form, and with no special movement types anything that can fly is likely a better scout form." class="table-danger"><th>Weasel</th><td>0</td></tr>
+            <tr title="For your purposes the blood hawk isn't notable than the eagle or the hawk. Pack tactics is neat, but doesn't make this a combat form." class="table-success"><th>Blood Hawk</th><td>1/8</td></tr>
+            <tr title="Good speed and your allies can ride you." class="table-success"><th>Camel</th><td>1/8</td></tr>
+            <tr title="A startlingly good combat form despite its CR. Flight and swim speeds make it extremely mobile, it has blindsight for some reason (albet with a tiny range)* and the combination of flyby and poison damage with no save makes it an effect hit-and-run attacker. A fantastic option if you're scouting and might also need to kill something weak." class="table-primary"><th>Flying Snake</th><td>1/8</td></tr>
+            <tr title="Crab is a better scout despite lower speed simply due to the size difference. Blindsight is tempting, but not enough to make the giant crab useful." class="table-danger"><th>Giant Crab</th><td>1/8</td></tr>
+            <tr title="Not appreciably better than the rat as a scout." class="table-danger"><th>Giant Rat</th><td>1/8</td></tr>
+            <tr title="Too big for a scout, and no special movement types." class="table-danger"><th>Giant Weasel</th><td>1/8</td></tr>
+            <tr title="A good scout in populated environments." class="table-primary"><th>Mastiff</th><td>1/8</td></tr>
+            <tr title="Allies can ride you, but camels are faster." class="table-warning"><th>Mule</th><td>1/8</td></tr>
+            <tr title="The flying snake is strictly better by a large margin." class="table-danger"><th>Poisonous Snake</th><td>1/8</td></tr>
+            <tr title="Mules are the same speed and have some other occasionally useful abilities." class="table-danger"><th>Pony</th><td>1/8</td></tr>
+            <tr title="The flying snake is strictly better." class="table-danger"><th>Stirge</th><td>1/8</td></tr>
+        </tbody>
         </table>
     </div>
     <div class="col embed-responsive embed-responsive-1by1">
@@ -155,7 +189,9 @@
     function onLoad()
     {
         $('#table').DataTable({
-        "paging":   false,
+        "language": {
+            "url": "tl.json"
+        },
         "info":     false
     } );
 
