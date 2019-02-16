@@ -1,0 +1,57 @@
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script>
+        function flipCard(card)
+        {
+            card.classList.toggle("flipped");
+        }
+
+        function updateCube()
+        {
+            var cube = document.getElementById("cube1");
+            var cubeX = document.getElementById("cubeX").value;
+            var cubeY = document.getElementById("cubeY").value;
+            var cubeZ = document.getElementById("cubeZ").value;
+            cube.style.transform = "rotateX("+ cubeX +"deg) rotateY("+cubeY+"deg) rotateZ("+cubeZ+"deg)";
+        }
+    </script>
+</head>
+
+<body>
+<div class="scene">
+    <div id="card1" onclick="flipCard(this)" class="card">
+        <div class="card-face card-front">front</div>
+        <div class="card-face card-back">back</div>
+    </div>
+    <br>
+    <div id="cube1" class="cube">
+        <div class="cube-face cube-front">
+            front
+        </div>
+        <div class="cube-face cube-left">
+            left
+        </div>
+        <div class="cube-face cube-right">
+            right
+        </div>
+        <div class="cube-face cube-back">
+            back
+        </div>
+        <div class="cube-face cube-top">
+            top
+        </div>
+        <div class="cube-face cube-bottom">
+            bottom
+        </div>
+    </div>
+
+    <div style="margin-left: 250px;">
+        <label for="cubeX">Cube X</label>
+        <input id="cubeX" name="cubeX" oninput="updateCube()" type="range" value="0" min="0" max="360">
+        <label for="cubeY">Cube Y</label>
+        <input id="cubeY" name="cubeY" oninput="updateCube()" type="range" value="0" min="0" max="360">
+        <label for="cubeZ">Cube Z</label>
+        <input id="cubeZ" name="cubeZ" oninput="updateCube()" type="range" value="0" min="0" max="360">
+    </div>
+</div>
+</body>

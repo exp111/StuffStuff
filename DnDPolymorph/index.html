@@ -189,9 +189,13 @@
     function onLoad()
     {
         $('#table').DataTable({
-        "language": {
-            "url": "tl.json"
-        },
+            "autoWidth":false,
+            "columnDefs": [
+            { "width": "80%", "targets": 0 }
+            ],
+            "scrollY": "70%",
+            "scrollCollapse": true,
+            "paging": false,
         "info":     false
     } );
 
