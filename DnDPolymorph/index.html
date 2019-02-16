@@ -38,6 +38,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.13/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+            function doDMG()
+            {
+                var hp = document.getElementById("hp");
+                var dmg = document.getElementById("dmg");
+                hp.value -= dmg.value;
+            }
+    </script>
 </head>
 <body>
     <ul>
@@ -50,7 +58,11 @@
         <div class="input-group-prepend">
           <span class="bg-danger input-group-text white" id="hp-label">HP</span>
         </div>
-        <input class="border-red form-control" type="number" step="1" min="0" aria-describedby="hp-label">
+        <input id="hp" class="border-red form-control" type="number" value="0" step="1" min="0" aria-describedby="hp-label">
+        <input id="dmg" class="form-control" type="number" value="0" step="0" min="0">
+        <div class="input-group-append">
+            <button onclick="doDMG()" class="bg-dark input-group-text white" id="hp-label">DMG</button>
+        </div>
     </div>
     
     <div class="container">
@@ -189,14 +201,10 @@
     function onLoad()
     {
         $('#table').DataTable({
-            "autoWidth":false,
-            "columnDefs": [
-            { "width": "80%", "targets": 0 }
-            ],
-            "scrollY": "70%",
-            "scrollCollapse": true,
-            "paging": false,
-        "info":     false
+            "language": {
+            "url": "tl.json"
+            },
+            "info": false
     } );
 
         addRowHandlers();
