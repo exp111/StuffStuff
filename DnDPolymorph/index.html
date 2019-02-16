@@ -181,6 +181,17 @@
         value = "https://roll20.net/compendium/dnd5e/" + value + "#attributes";
         var frame = document.getElementById("frame");
         frame.src = value;
+
+        var x = new XMLHttpRequest();
+        x.open('GET', value);
+		x.onload = function (e) 
+        { 
+            var match = x.response.match(/"HP":"(\d*) \(/); 
+            if (match != null)
+                document.getElementById("hp").value = match[1];
+        };
+		x.send();
+        
     }
 
     function addRowHandlers() {
