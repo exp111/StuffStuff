@@ -34,7 +34,10 @@
             {
                 startStamp = arr.TimeStamp;
             }
-            var row = [arr.TimeStamp - startStamp];
+            var row = new Array(columnIndex.length + 1).fill(0); // Fill array so no gaps are there
+            row[0] = arr.TimeStamp - startStamp;
+
+            // Add Monsters
             arr.Monsters.forEach(monster => {
                 var index = columnIndex[monster.MonsterName];
                 if (index === undefined)
