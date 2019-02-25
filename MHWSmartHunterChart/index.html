@@ -57,9 +57,12 @@
                 {
                     data.addColumn('number', player.PlayerName + " DMG");
                     columnIndex[player.PlayerName] = index = columnIndex.length++ + 1;
+                    data.addColumn('number', player.PlayerName + " DPS");
+                    columnIndex.length++;
                 }
 
                 row[index] = player.PlayerTotalDmg;
+                row[index + 1] = player.PlayerDps;
             });
 
             data.addRow(row);
