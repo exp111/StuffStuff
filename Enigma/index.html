@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Enigma</title>
+        <link rel="stylesheet" href="index.css">
+        <script src="enigma.js"></script>
+    </head>
+    <body>
+    <!-- The Rotors -->
+    <div class="line">
+        <input type="number" min="1" max="26" id="rotor1" value="1">
+        <input type="number" min="1" max="26" id="rotor2" value="1">
+        <input type="number" min="1" max="26" id="rotor3" value="1">
+    </div>
+    <br><br>
+
+    <!-- The Lamps -->
+    <div class="line">
+            <div tabindex="-1" id="keyQ" class="lamp">Q</div>
+            <div tabindex="-1" id="keyW" class="lamp">W</div>
+            <div tabindex="-1" id="keyE" class="lamp">E</div>
+            <div tabindex="-1" id="keyR" class="lamp">R</div>
+            <div tabindex="-1" id="keyT" class="lamp">T</div>
+            <div tabindex="-1" id="keyZ" class="lamp">Z</div>
+            <div tabindex="-1" id="keyU" class="lamp">U</div>
+            <div tabindex="-1" id="keyI" class="lamp">I</div>
+            <div tabindex="-1" id="keyO" class="lamp">O</div>
+            <div tabindex="-1" id="keyP" class="lamp">P</div>
+    </div>
+    <div class="line">
+            <div tabindex="-1" id="keyA" class="lamp">A</div>
+            <div tabindex="-1" id="keyS" class="lamp">S</div>
+            <div tabindex="-1" id="keyD" class="lamp">D</div>
+            <div tabindex="-1" id="keyF" class="lamp">F</div>
+            <div tabindex="-1" id="keyG" class="lamp">G</div>
+            <div tabindex="-1" id="keyH" class="lamp">H</div>
+            <div tabindex="-1" id="keyJ" class="lamp">J</div>
+            <div tabindex="-1" id="keyK" class="lamp">K</div>
+            <div tabindex="-1" id="keyL" class="lamp">L</div>
+    </div>
+    <div class="line">
+            <div tabindex="-1" id="keyY" class="lamp">Y</div>
+            <div tabindex="-1" id="keyX" class="lamp">X</div>
+            <div tabindex="-1" id="keyC" class="lamp">C</div>
+            <div tabindex="-1" id="keyV" class="lamp">V</div>
+            <div tabindex="-1" id="keyB" class="lamp">B</div>
+            <div tabindex="-1" id="keyN" class="lamp">N</div>
+            <div tabindex="-1" id="keyM" class="lamp">M</div>
+    </div>
+
+    <!-- Input/Output -->
+    Input:
+    <textarea id="input" class="textArea" rows="3"></textarea>
+    Output:
+    <textarea id="output" class="textArea" rows="3"></textarea>
+    </body>
+</html>
