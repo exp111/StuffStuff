@@ -10,6 +10,8 @@ var sounds = {
         "34 schaden",
         "hehe",
         "lul",
-        "würfel"
+        "würfel",
+        "ja",
+        "nein"
     ]
 }
