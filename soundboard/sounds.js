@@ -12,6 +12,10 @@ var sounds = {
         "lul",
         "würfel",
         "ja",
-        "nein"
+        "nein",
+        "bowchika",
+        "hahahaha",
+        "nani",
+        "penis"
     ]
 }
