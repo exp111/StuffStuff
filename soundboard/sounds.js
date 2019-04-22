@@ -6,6 +6,10 @@ var sounds = {
         "natürlich Tobi",
         "pinguinbifi",
         "schlafgeräusche",
-        "sneak attack"
+        "sneak attack",
+        "34 schaden",
+        "hehe",
+        "lul",
+        "würfel"
     ]
 }
