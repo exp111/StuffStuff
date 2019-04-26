@@ -14,7 +14,6 @@ var sounds = {
         "ja",
         "nein",
         "bowchika",
-        "hahahaha",
         "nani",
         "penis"
     ]
