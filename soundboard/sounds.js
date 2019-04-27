@@ -15,6 +15,7 @@ var sounds = {
         "nein",
         "bowchika",
         "nani",
-        "penis"
+        "penis",
+        "bruh"
     ]
 }
