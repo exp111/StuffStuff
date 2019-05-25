@@ -16,6 +16,11 @@ var sounds = {
         "bowchika",
         "nani",
         "penis",
-        "bruh"
+        "bruh",
+        "voll geil",
+        "magic",
+        "wieeeee",
+        "wow",
+        "xD"
     ]
 }
