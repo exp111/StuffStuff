@@ -21,6 +21,6 @@ var sounds = {
         "magic",
         "wieeeee",
         "wow",
-        "xD"
+        "ixdee"
     ]
 }
