@@ -1,0 +1,20 @@
+body
+{
+    font-family: cursive;
+}
+
+ul
+{ 
+    width: 100%;
+} 
+
+li
+{ 
+    display:inline; 
+    padding-right: 20px;
+}    
+
+.title
+{
+    font-weight: bold;
+}

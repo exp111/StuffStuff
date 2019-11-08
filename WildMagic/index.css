@@ -1,0 +1,29 @@
+body
+{
+    text-align: center;
+}
+
+.dice
+{
+    margin: auto;
+    width: 500;
+    height: 500;
+    background: url(dice.svg) no-repeat center;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+span
+{
+    font-family: Impact;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.bottomCenter
+{
+    
+}
