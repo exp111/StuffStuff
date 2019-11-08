@@ -1,0 +1,324 @@
+<html>
+
+<head>
+    <title>Meme</title>
+    <style>
+        div {
+            position: absolute;
+        }
+
+        button {
+            position: absolute;
+        }
+
+        #instructions {
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            text-align: center;
+            font-family: monospace;
+            color: #9999d8;
+            font-size: 14px;
+        }
+
+        td {
+            text-align: center;
+            color: #999999;
+            font-size: 14px;
+            font-family: monospace;
+        }
+
+        button {
+            width: auto;
+        }
+
+        @-webkit-keyframes bounce {
+
+            from,
+            to {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+
+            50% {
+                -webkit-transform: translate3d(0, -30px, 0);
+                transform: translate3d(0, -30px, 0);
+                -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+
+            }
+        }
+
+        @keyframes bounce {
+
+            from,
+            to {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+
+            60% {
+                -webkit-transform: translateY(-30px);
+                transform: translateY(-30px);
+                -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+            }
+        }
+
+        #center_img {
+            -webkit-transform-origin: center bottom;
+            transform-origin: center bottom;
+        }
+
+        .bounce {
+            -webkit-animation-name: bounce;
+            animation-name: bounce;
+            -webkit-animation-duration: 700ms;
+            animation-duration: 700ms;
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+        }
+    </style>
+    <script src="sounds.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="center_img"><img src="img/Pascal.png" /></div>
+    <table id="lineup"></table>
+    <div id="instructions">
+        Volume: <span id="volume_level"></span>
+        <input type="range" min="0" max="1" step="0.1" value="0.4" id="volume" />
+        <br />
+        Hold space for multi mode. Press y to stop sounds started in single mode.
+    </div>
+    <script>
+        function soundPlay(e) {
+            var img = document.getElementById("center_img");
+            img.setAttribute("class", "bounce");
+        }
+
+        function soundEndedOrPause(e) {
+            var img = document.getElementById("center_img");
+            img.setAttribute("class", "");
+        }
+
+        function cycleArray(array, n) {
+            if (n < 0) {
+                n += array.length;
+            }
+            n = n % array.length;
+            var o = [];
+            for (var i = n; i < array.length; i++) {
+                o.push(array[i]);
+            }
+            for (var i = 0; i < n; i++) {
+                o.push(array[i]);
+            }
+            return o;
+        }
+
+        var char = window.location.hash.substring(1);
+        if (!char) {
+            char = "Pascal";
+        }
+        var volumeElem = document.getElementById("volume");
+        var levelElem = document.getElementById("volume_level");
+        var volume = volumeElem.value;
+
+        levelElem.innerHTML = volume;
+        volumeElem.addEventListener("input", function (e) {
+            volume = parseFloat(this.value);
+            if (volume === 0) {
+                levelElem.innerHTML = "0.0";
+            } else if (volume === 1) {
+                levelElem.innerHTML = "1.0";
+            } else {
+                levelElem.innerHTML = volume;
+            }
+        });
+
+        var c = {};
+        function setC() {
+            c = {
+                x: Math.floor(window.innerWidth / 2),
+                y: Math.floor((7 * window.innerHeight) / 16),
+                r: Math.max(180, Math.floor((10 * window.innerHeight) / 32))
+            };
+        }
+
+        setC();
+        var img = document.getElementById("center_img");
+        var lineup = document.getElementById("lineup");
+        var top_row = newElem("tr");
+        var bottom_row = newElem("tr");
+        lineup.appendChild(top_row);
+        lineup.appendChild(bottom_row);
+        var char_keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+        var chars = [];
+
+        for (var x in sounds) {
+            var imgtd = newElem("td");
+            var i = newElem("img");
+
+            i.setAttribute("src", "img/" + x + ".png");
+            i.setAttribute("data-char", x);
+            i.addEventListener("click", function (e) {
+                makeButtonsAndRender(this.getAttribute("data-char"));
+                window.location.hash = this.getAttribute("data-char");
+            });
+            i.setAttribute(
+                "style",
+                "display: inline; height: 75px; width: auto; cursor: pointer;"
+            );
+
+            imgtd.appendChild(i);
+            var keytd = newElem("td");
+            keytd.innerHTML = char_keys[chars.length];
+            chars.push(x);
+            top_row.appendChild(imgtd);
+            bottom_row.appendChild(keytd);
+            sounds[x] = sounds[x].sort(function (a, b) {
+                if (a.length > b.length) {
+                    return 1;
+                } else if (b.length > a.length) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            });
+            for (var j = 0; j < 2; j++) {
+                var sounds2 = [];
+                for (var i = 0; i < sounds[x].length; i++) {
+                    var preload = newAudioElem();
+                    preload.setAttribute("src", x + "/" + sounds[x][i] + ".wav");
+                    preload.load();
+
+                    if (i % 2) {
+                        sounds2[(i - 1) / 2] = sounds[x][i];
+                    } else {
+                        sounds2[sounds[x].length - 1 - i / 2] = sounds[x][i];
+                    }
+                }
+                sounds[x] = sounds2;
+            }
+            sounds[x] = cycleArray(sounds[x], -1);
+        }
+
+        var sound_keys = ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "x", "c", "v", "b", "n", "m", "ö", "ä", "ü"];
+
+        function makeButtonsAndRender(_char) {
+            char = _char;
+            setButtons(sounds[char]);
+            var imgbox = img.getBoundingClientRect();
+            var img_left = c.x - 100;
+            var img_top = c.y - 133;
+            img.setAttribute(
+                "style",
+                "left: " + img_left + "px; top: " + img_top + "px;"
+            );
+            img.firstElementChild.setAttribute("src", "img/" + char + ".png");
+        }
+
+        function newElem(n, append) {
+            return document.createElement(n);
+        }
+        function newAudioElem() {
+            var audio = newElem("audio");
+            audio.addEventListener("play", soundPlay);
+            audio.addEventListener("ended", soundEndedOrPause);
+            audio.addEventListener("pause", soundEndedOrPause);
+            return audio;
+        }
+
+        window.addEventListener("resize", function (e) {
+            setC();
+            makeButtonsAndRender(char);
+        });
+
+        var elems = {};
+        function setButtons(sounds) {
+            var o = -(Math.PI / 2);
+            var buttons = document.querySelectorAll("button");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].parentNode.removeChild(buttons[i]);
+            }
+            for (var i = 0; i < sounds.length; i++) {
+                var a = newElem("button");
+                a.innerHTML = sound_keys[i] + ": " + sounds[i];
+                a.setAttribute("data-source", sounds[i]);
+                a.setAttribute("id", sound_keys[i]);
+                var theta = o + (i / sounds.length - 1) * 2 * Math.PI;
+                document.body.appendChild(a);
+                var box = a.getBoundingClientRect();
+                var px = Math.floor(c.x + Math.cos(theta) * c.r - 0.5 * box.width);
+                var py = Math.floor(c.y + Math.sin(theta) * c.r);
+                a.setAttribute("style", "left: " + px + "px; top: " + py + "px;");
+                elems[sound_keys[i]] = a;
+            }
+        }
+        var mode = "single";
+        document.body.addEventListener("keydown", function (e) {
+            if (sound_keys.indexOf(e.key) > -1) {
+                if (sounds[char][sound_keys.indexOf(e.key)]) {
+                    var src = sounds[char][sound_keys.indexOf(e.key)];
+                    if (
+                        document.getElementById("audio-" + char + e.key) &&
+                        mode === "single"
+                    ) {
+                        audio = document.getElementById("audio-" + char + e.key);
+                    } else {
+                        var audio = newAudioElem();
+                        audio.setAttribute("id", "audio-" + char + e.key);
+                        audio.setAttribute("src", char + "/" + src + ".wav");
+                        if (mode === "single") {
+                            document.body.appendChild(audio);
+                        }
+                    }
+                    audio.volume = volume;
+                    audio.currentTime = 0;
+                    audio.play();
+                }
+            } else if (char_keys.indexOf(e.key) > -1) {
+                if (chars[char_keys.indexOf(e.key)]) {
+                    makeButtonsAndRender(chars[char_keys.indexOf(e.key)]);
+                    window.location.hash = chars[char_keys.indexOf(e.key)];
+                }
+            } else if (e.key === " ") {
+                mode = "multi";
+            } else if (e.key === "y") {
+                var audios = document.querySelectorAll("audio");
+                for (var i = 0; i < audios.length; i++) {
+                    if (audios[i].readyState === 4 && !audios[i].paused) {
+                        audios[i].pause();
+                    }
+                }
+            }
+        });
+        document.body.addEventListener("keyup", function (e) {
+            if (e.key === " ") {
+                mode = "single";
+            }
+        });
+
+        document.body.addEventListener("click", function (e) {
+            if (e.target.nodeName === "BUTTON") {
+                var src = e.target.getAttribute("data-source");
+                var key = sound_keys[sounds[char].indexOf(src)];
+                var audio = newAudioElem();
+                audio.setAttribute("src", char + "/" + src + ".wav");
+                audio.setAttribute("id", "audio-" + char + key);
+                audio.volume = volume;
+                audio.currentTime = 0;
+                audio.play();
+            }
+        });
+
+        makeButtonsAndRender(char);
+    </script>
+</body>
+
+</html>
