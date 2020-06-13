@@ -1,0 +1,139 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            Telescience Calculator
+        </title>
+        <style>
+            .flex
+            {
+                display: flex;
+            }
+            .split
+            {
+                width: 50%;
+            }
+            table, td, th
+            {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+        <script>
+            function refreshCoordinates()
+            {
+                let tele = {
+                    X1: Number(document.getElementById("teleX1").value),
+                    Y1: Number(document.getElementById("teleY1").value)
+                };
+                document.getElementById("teleX2").value = tele.X1 + 1;
+                document.getElementById("teleY2").value = tele.Y1 + 1;
+    
+                let gps = {
+                    X1: Number(document.getElementById("gpsX1").value),
+                    Y1: Number(document.getElementById("gpsY1").value),
+                    X2: Number(document.getElementById("gpsX2").value),
+                    Y2: Number(document.getElementById("gpsY2").value)
+                };
+    
+                let mx = gps.X2 - gps.X1;
+                let my = gps.Y2 - gps.Y1;
+    
+                let cx = gps.X1 - (mx * tele.X1);
+                let cy = gps.Y1 - (my * tele.Y1);
+    
+                let input = {
+                    X: Number(document.getElementById("inX").value),
+                    Y: Number(document.getElementById("inY").value)
+                };
+    
+                let X = (input.X - cx) / mx;
+                let Y = (input.Y - cy) / my;
+    
+                document.getElementById("outX").value = X;
+                document.getElementById("outY").value = Y;
+            }
+        </script>
+    </head>
+    <body>
+        <fieldset class="flex">
+            <legend>Input 1</legend>
+            <fieldset class="split">
+                <legend>Tele</legend>
+                <label for="teleX1">X</label>
+                <input id="teleX1" value="0" type="number" oninput="refreshCoordinates()">
+                <label for="teleY1">Y</label>
+                <input id="teleY1" value="0" type="number" oninput="refreshCoordinates()">
+            </fieldset>
+            <fieldset class="split">
+                <legend>GPS</legend>
+                <label for="gpsX1">X</label>
+                <input id="gpsX1" value="0" type="number" oninput="refreshCoordinates()">
+                <label for="gpsY1">Y</label>
+                <input id="gpsY1" value="0" type="number" oninput="refreshCoordinates()">
+            </fieldset>
+        </fieldset> 
+        <fieldset class="flex">
+            <legend>Input 2</legend>
+            <fieldset class="split">
+                <legend>Tele</legend>
+                <label for="teleX2">X</label>
+                <input id="teleX2" value="1" readonly>
+                <label for="teleY2">Y</label>
+                <input id="teleY2" value="1" readonly>
+            </fieldset>
+            <fieldset class="split">
+                <legend>GPS</legend>
+                <label for="gpsX2">X</label>
+                <input id="gpsX2" value="0" type="number" oninput="refreshCoordinates()">
+                <label for="gpsY2">Y</label>
+                <input id="gpsY2" value="0" type="number" oninput="refreshCoordinates()">
+            </fieldset>
+        </fieldset>
+        <fieldset class="flex">
+            <legend>Coordinates</legend>
+            <fieldset class="split">
+                <legend>In</legend>
+                <label for="inX">X</label>
+                <input id="inX" value="0" type="number" oninput="refreshCoordinates()">
+                <label for="inY">Y</label>
+                <input id="inY" value="0" type="number" oninput="refreshCoordinates()">
+            </fieldset>
+            <fieldset class="split">
+                <legend>Out</legend>
+                <label for="outX">X</label>
+                <input id="outX" value="0" readonly>
+                <label for="outY">Y</label>
+                <input id="outY" value="0" readonly>
+            </fieldset>
+        </fieldset>
+        <p>
+            <a href="https://kayle7777.github.io/telescience/">Or use this</a>
+            <h2>Guide: <a href="https://wiki.ss13.co/Telescience">Also here.</a></h2>
+            <ol>
+                <li>Take 2 GPS, change the identifier of one to something recognizable.</li>
+                <li>Drop the named GPS on the telepad.</li>
+                <li>Input random X, Y, and Z coordinates. X=50, Y=50, Z=1 is a good place to start. Change values till it works</li>
+                <li>Teleport the pad. Input Tele Coords and the GPS coords (use unnamed GPS to get those) above</li>
+                <li>Retrieve GPS, increase the computer's X and Y inputs by 1. Send.</li>
+                <li>Read the GPS coords again. Input those too.</li>
+                <li>Input Coordinates where you want to go into "In". Entere "Out" Coords into the computer.</li>
+            </ol>
+
+            <table class="table">
+                <tr>
+                    <th>Error</th>
+                    <th>Solution</th>
+                </tr>
+                <tr>
+                    <td>Invalid Coordinates (XYZ)</td>
+                    <td>Teleportation prevented by interference.</td>
+                </tr>
+                <tr>
+                    <td>Adjust values</td>
+                    <td>Can't teleport there (Security/Adventure Zones). Adjust XY(Z)</td>
+                </tr>
+            </table>
+        </p>
+    </body>
+</html>
