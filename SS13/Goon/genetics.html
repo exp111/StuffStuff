@@ -18,7 +18,7 @@
                 let table = document.getElementById("recipes");
                 let filter = document.getElementById("filter").value;
                 // Kill all children
-                table.innerHTML = "<tr><th>Result</th><th>Recipe</th><th>Recipe Name</th></tr>";
+                table.innerHTML = "";
                 for (let r of recipes)
                 {
                     if (filter != "" && !recipeContains(r, filter))
@@ -68,7 +68,31 @@
 
             .recipes
             {
+                margin-top:10px;
                 width: 100%;
+                border-collapse: collapse;
+            }
+
+            .recipes td, .recipes th
+            {
+                text-align: left;
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            thead tr
+            {
+                background-color: #cccccc;
+            }
+
+            tr
+            {
+                height: 25px;
+            }
+            
+            tbody tr:hover
+            {
+                background-color: #f5f5f5;
             }
         </style>
     </head>
@@ -76,8 +100,15 @@
         <div class="main">
             <input id="filter" class="filter" type="text" oninput="filter()" placeholder="Filter here">
             <div class="recipes">
-                <table id="recipes" class="recipes">
+                <table class="recipes">
+                    <thead>
+                        <th>Result</th>
+                        <th>Recipe</th>
+                        <th>Recipe Name</th>
+                    </thead>
+                    <tbody id="recipes">
 
+                    </tbody>
                 </table>
             </div>
         </div>
