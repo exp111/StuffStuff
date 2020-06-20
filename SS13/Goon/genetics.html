@@ -10,13 +10,13 @@
 
             function recipeContains(recipe, filter)
             {
-                return recipe.result.includes(filter) || recipe.name.includes(filter) || recipe.recipe.toString().includes(filter);
+                return recipe.result.toLowerCase().includes(filter) || recipe.name.includes(filter) || recipe.recipe.toString().toLowerCase().includes(filter);
             }
 
             function filter()
             {
                 let table = document.getElementById("recipes");
-                let filter = document.getElementById("filter").value;
+                let filter = document.getElementById("filter").value.toLowerCase();
                 // Kill all children
                 table.innerHTML = "";
                 for (let r of recipes)
