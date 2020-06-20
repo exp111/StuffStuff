@@ -4,9 +4,95 @@
         <title>Genetics</title>
         <script>
             const data = `[{"name":"breathless","recipe":["Adrenaline Rush","Aquatic Genetics"],"result":"Anaerobic Metabolism"},{"name":"hulk","recipe":["Musculature Enhancement","Radioactive"],"result":"Gamma Ray Exposure"},{"name":"xray","recipe":["Optic Energizer","Blindness"],"result":"X-Ray Vision"},{"name":"regenerator","recipe":["Adrenaline Rush","Healing Touch"],"result":"Regeneration"},{"name":"toxic_farts","recipe":["Irritable Bowels","Apocrine Enhancement"],"result":"High Decay Digestion"},{"name":"thermal_res","recipe":["Fire Resistance","Cold Resistance"],"result":"Thermal Resistance"},{"name":"fire_resist","recipe":["Incendiary Mitochondria","Glowy"],"result":"Fire Resistance"},{"name":"cold_resist","recipe":["Cryokinesis","Glowy"],"result":"Cold Resistance"},{"name":"rad_resist","recipe":["Radioactive","Glowy"],"result":"Radiation Resistance"},{"name":"alch_resist","recipe":["Ethanol Production","Natural Anti-Toxins"],"result":"Alcohol Resistance"},{"name":"radio_brain","recipe":["Meta-Neural Enhancement","High-Pressure Larynx"],"result":"Meta-Neural Antenna"},{"name":"blood_overdrive","recipe":["Anemia","Polycythemia"],"result":"Hemopoiesis Overdrive"},{"name":"unintelligable","recipe":["High-Pressure Larynx","Constricted Larynx"],"result":"Frontal Gyrus Alteration Type-X"},{"name":"unintelligable_two","recipe":["Frontal Gyrus Alteration Type-B","Frontal Gyrus Alteration Type-E"],"result":"Frontal Gyrus Alteration Type-X"},{"name":"vowels","recipe":["Frontal Gyrus Alteration Type-B","Frontal Gyrus Alteration Type-C"],"result":"Frontal Gyrus Alteration Type-O"},{"name":"coprolalia","recipe":["Frontal Gyrus Alteration Type-C","Frontal Gyrus Alteration Type-T"],"result":"Coprolalia"},{"name":"epilepsy","recipe":["Diminished Optic Nerves","Bioluminescent Overdrive"],"result":"Epilepsy"},{"name":"blind","recipe":["Diminished Optic Nerves","Narcolepsy"],"result":"Blindness"},{"name":"mute","recipe":["Constricted Larynx","Paranoia"],"result":"Frontal Gyrus Suspension"},{"name":"drunk","recipe":["Natural Anti-Toxins","Apocrine Enhancement"],"result":"Ethanol Production"},{"name":"radioactive","recipe":["Dermal Glow","Apocrine Enhancement"],"result":"Radioactive"},{"name":"mutagenic_field","recipe":["Radioactive","Spatial Destabilization"],"result":"Mutagenic Field"},{"name":"tourettes","recipe":["Dyspraxia","Coprolalia"],"result":"Tourettes"},{"name":"buzz","recipe":["Bee Production","Apocrine Enhancement"],"result":"Nectar Perspiration"},{"name":"glowy_one","recipe":["Dermal Glitter","Melanin Suppressor"],"result":"Glowy"},{"name":"glowy_two","recipe":["Dermal Glitter","Melanin Stimulator"],"result":"Glowy"},{"name":"glowy_three","recipe":["Dermal Glow","Dermal Glitter"],"result":"Glowy"},{"name":"shiny","recipe":["Glowy","Dermal Glow"],"result":"Dermal Glitter"},{"name":"aura","recipe":["Glowy","Dermal Glitter"],"result":"Dermal Glow"},{"name":"fire_aura_one","recipe":["Dermal Glow","Incendiary Mitochondria"],"result":"Blazing Aura"},{"name":"fire_aura_two","recipe":["Dermal Glow","Fire Breath"],"result":"Blazing Aura"},{"name":"strong","recipe":["Obesity","Natural Anti-Toxins"],"result":"Musculature Enhancement"},{"name":"stinky","recipe":["Irritable Bowels","Pseudonecrosis"],"result":"Apocrine Enhancement"},{"name":"bee","recipe":["Blattodean Genetics","Natural Anti-Toxins"],"result":"Bee Production"},{"name":"telekinesis","recipe":["Telepathy","Meta-Neural Antenna"],"result":"Telekinetic Pull"},{"name":"eyebeams","recipe":["Diminished Optic Nerves","Glowy"],"result":"Optic Energizer"},{"name":"superfart","recipe":["High-Pressure Larynx","Irritable Bowels"],"result":"High-Pressure Intestines"},{"name":"cryokinesis","recipe":["Dactyl Crystallization","Fire Resistance"],"result":"Cryokinesis"},{"name":"adrenaline","recipe":["Natural Anti-Toxins","Musculature Enhancement"],"result":"Adrenaline Rush"},{"name":"jumpy","recipe":["Musculature Enhancement","Primal Genetics"],"result":"Jumpy"},{"name":"telepath","recipe":["Meta-Neural Enhancement","Constricted Larynx"],"result":"Telepathy"},{"name":"midas","recipe":["Dactyl Crystallization","Ethanol Production"],"result":"Midas Touch"},{"name":"midas_two","recipe":["Dactyl Crystallization","Dermal Glitter"],"result":"Midas Touch"},{"name":"healing_touch","recipe":["Midas Touch","Natural Anti-Toxins"],"result":"Healing Touch"},{"name":"healing_touch_two","recipe":["Midas Touch","Self Biomass Manipulation"],"result":"Healing Touch"},{"name":"dimension_shift","recipe":["Meta-Neural Antenna","Spatial Destabilization"],"result":"Dimension Shift"},{"name":"fire_breath","recipe":["Chronic Cough","Incendiary Mitochondria"],"result":"Fire Breath"},{"name":"bigpuke","recipe":["Chronic Cough","Ethanol Production"],"result":"Mass Emesis"},{"name":"bigpuke_two","recipe":["Chronic Cough","Apocrine Enhancement"],"result":"Mass Emesis"},{"name":"bigpuke_three","recipe":["Chronic Sneezing","Ethanol Production"],"result":"Mass Emesis"},{"name":"bigpuke_four","recipe":["Chronic Sneezing","Apocrine Enhancement"],"result":"Mass Emesis"},{"name":"ink_one","recipe":["Aquatic Genetics","Melanin Stimulator"],"result":"Ink Glands"},{"name":"ink_two","recipe":["Aquatic Genetics","Dermal Glitter"],"result":"Ink Glands"},{"name":"ink_three","recipe":["Aquatic Genetics","Chronic Sneezing"],"result":"Ink Glands"},{"name":"photokinesis","recipe":["Glowy","Meta-Neural Enhancement"],"result":"Photokinesis"},{"name":"photokinesis_two","recipe":["Dermal Glitter","Meta-Neural Enhancement"],"result":"Photokinesis"},{"name":"photokinesis_three","recipe":["Dermal Glow","Meta-Neural Enhancement"],"result":"Photokinesis"},{"name":"erebokinesis_one","recipe":["Cloak of Darkness","Meta-Neural Enhancement"],"result":"Erebokinesis"},{"name":"erebokinesis_two","recipe":["Chameleon","Meta-Neural Enhancement"],"result":"Erebokinesis"},{"name":"erebokinesis_three","recipe":["Unstable Refraction","Meta-Neural Enhancement"],"result":"Erebokinesis"},{"name":"brown_note","recipe":["Irritable Bowels","High-Pressure Larynx"],"result":"Brown Note"},{"name":"brown_note_two","recipe":["Apocrine Enhancement","High-Pressure Larynx"],"result":"Brown Note"},{"name":"cloak_of_darkness","recipe":["Unstable Refraction","Melanin Stimulator"],"result":"Cloak of Darkness"},{"name":"chameleon","recipe":["Unstable Refraction","Melanin Suppressor"],"result":"Chameleon"},{"name":"chameleon_two","recipe":["Unstable Refraction","Meta-Neural Haze"],"result":"Chameleon"},{"name":"shoot_limb","recipe":["Irritable Bowels","Mass Emesis"],"result":"Vestigal Ballistics"},{"name":"seenoevil","recipe":["Blindness","Deafness","Frontal Gyrus Suspension"],"result":"Primal Genetics"},{"name":"squid","recipe":["Obesity","Apocrine Enhancement"],"result":"Aquatic Genetics"},{"name":"squid_two","recipe":["Obesity","Self Biomass Manipulation"],"result":"Aquatic Genetics"},{"name":"roach","recipe":["Apocrine Enhancement","Bee Production"],"result":"Blattodean Genetics"},{"name":"roach_two","recipe":["Radioactive","Bee Production"],"result":"Blattodean Genetics"},{"name":"flashy","recipe":["Glowy","Radioactive"],"result":"Bioluminescent Overdrive"},{"name":"flashy_two","recipe":["Glowy","Chameleon"],"result":"Bioluminescent Overdrive"},{"name":"flashy_three","recipe":["Glowy","Epilepsy"],"result":"Bioluminescent Overdrive"},{"name":"lizard","recipe":["Cranial Keratin Formation","Chameleon"],"result":"Saurian Genetics"},{"name":"lizard_two","recipe":["Cranial Keratin Formation","Fire Resistance"],"result":"Saurian Genetics"},{"name":"dwarf","recipe":["Musculature Enhancement","Alcohol Resistance"],"result":"Dwarfism"},{"name":"dwarf_two","recipe":["Musculature Enhancement","Ethanol Production"],"result":"Dwarfism"},{"name":"dwarf_three","recipe":["Musculature Enhancement","Obesity"],"result":"Dwarfism"},{"name":"blank","recipe":["Melanin Suppressor","Melanin Stimulator"],"result":"Melanin Eraser"},{"name":"skeleton","recipe":["Paranoia","Pseudonecrosis"],"result":"Ossification"},{"name":"skeleton_two","recipe":["Cloak of Darkness","Pseudonecrosis"],"result":"Ossification"},{"name":"skeleton_three","recipe":["X-Ray Vision","Pseudonecrosis"],"result":"Ossification"}] `;
+            const descriptions = {}
         </script>
         <script>
             var recipes = JSON.parse(data);
+
+            function setClass(el, c)
+            {
+                el.classList.add(c);
+            }
+
+            function removeClass(el, c)
+            {
+                el.classList.remove(c);
+            }
+
+            function openInfo(recipe)
+            {
+                let info = document.getElementById("info");
+                removeClass(info, "hidden");
+                // create the info
+                constructInfo(info, recipe);
+
+                // call the func a bit later so the inital showInfo click doesn't call this
+                setTimeout(() =>
+                {
+                    document.onclick = (e) =>
+                    {
+                        if (e.target.id == "info" || 
+                        e.target.offsetParent && e.target.offsetParent.id == "info") //ignore when clicked on info or children
+                            return;
+
+                        document.onclick = null;
+                        setClass(document.getElementById("info"), "hidden");
+                    }
+                }, 100);
+            }
+
+            function constructInfo(info, recipe)
+            {
+                // clear
+                info.innerHTML = "";
+
+                // Title
+                let title = document.createElement("h1");
+                title.innerText = recipe.result;
+                info.append(title);
+                // Recipe Name
+                let name = document.createElement("i");
+                name.innerText = "Recipe Name: " + recipe.name;
+                info.append(name);
+
+                // TODO: Description
+                let desc = document.createElement("p");
+                desc.innerText = "Description: " + descriptions[recipe.result];
+                info.append(desc);
+
+                // Recipe Components
+                let compHeader = document.createElement("h3");
+                compHeader.innerText = "Components:";
+                info.append(compHeader);
+                let list = document.createElement("ul");
+                for (let r of recipe.recipe)
+                {
+                    let comp = document.createElement("li");
+                    comp.innerText = r;
+
+                    // get the recipes which craft this result; put them in new ulist
+                    let recRecipes = recipes.filter(rec => rec.result == r);
+                    if (recRecipes.length > 0)
+                    {
+                        let ul = document.createElement("ul");
+                        ul.innerText = "Craftable from:";
+                        comp.append(ul);
+                        for (let rec of recRecipes)
+                        {
+                            let li = document.createElement("li");
+                            li.innerText = rec.recipe.join(', ');
+                            ul.append(li);
+                        }
+                    }
+                    else
+                    {
+                        comp.innerHTML += " <i>(not craftable)</i>";
+                    }
+
+                    list.append(comp);
+                }
+                info.append(list);
+            }
 
             function recipeContains(recipe, filter)
             {
@@ -25,6 +111,7 @@
                         continue;
 
                     let row = document.createElement("tr");
+                    row.onclick = () => openInfo(r);
                     let arr = [r.result, r.recipe.join(", "), r.name]
                     for (let a of arr)
                     {
@@ -32,7 +119,7 @@
                         cell.innerText = a;
                         row.append(cell);
                     }
-                    table.appendChild(row)
+                    table.append(row)
                 }
             }
             //asap the site loads, put 
@@ -94,6 +181,23 @@
             {
                 background-color: #f5f5f5;
             }
+
+            .hidden
+            {
+                visibility: hidden;
+            }
+
+            .info
+            {
+                width: 80%;
+                height: 80%;
+                position:absolute;
+                top: 10%;
+                left: 10%;
+                background: #9e9e9e;
+                padding: 20px;
+                border-radius: 4px;
+            }
         </style>
     </head>
     <body>
@@ -111,6 +215,9 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div id="info" class="info hidden">
+            <h1></h1>
         </div>
     </body>
 </html>
