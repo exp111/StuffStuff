@@ -18,10 +18,18 @@
             {
                 el.classList.remove(c);
             }
+            
+            function containsClass(el, c)
+            {
+                return el.classList.contains(c);
+            }
 
             function openInfo(recipe)
             {
                 let info = document.getElementById("info");
+                if (!containsClass(info, "hidden")) //window already open
+                    return;
+
                 removeClass(info, "hidden");
                 // create the info
                 constructInfo(info, recipe);
