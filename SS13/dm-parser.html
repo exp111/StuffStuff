@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <script src="dm-parser.js"></script>
+        <script>
+            function makeTree(header, arr)
+            {
+                let ul = document.createElement("ul");
+                let head = document.createElement("li");
+                head.innerHTML = `<b>${header}</b>`;
+                ul.append(head);
+                for (let e of arr)
+                {
+                    let li = document.createElement("li");
+                    li.innerText = JSON.stringify(e);
+                    ul.append(li);
+                }
+                
+                return ul;
+            }
+            function makeLi(str)
+            {
+                let el = document.createElement("li");
+                el.innerText = str;
+                return el;
+            }
+            function makeSub(str)
+            {
+                let el = document.createElement("ul");
+                let e = document.createElement("li");
+                e.innerHTML = str;
+                el.append(e);
+                return el;
+            }
+            function parse()
+            {
+                let input = document.getElementById("input");
+                let output = document.getElementById("output");
+                let error = document.getElementById("error");
+
+                let code = input.value;
+                if (code == "")
+                {
+                    error.innerText = "Empty!"
+                    return;
+                }
+
+                try
+                {
+                    error.innerText = "";
+                    output.innerHTML = "";
+                    let result = DMParse(code);
+                    let li = document.createElement("ul");
+                    for (let c of result)
+                    {
+                        li.append(makeLi(c.className));
+                        li.append(makeTree("Properties:", c.properties));
+                        li.append(makeTree("Methods:", c.methods));
+                        li.append(makeSub(`<b>Line:</b> ${c.line}`))
+                    }
+                    output.append(li);
+                }
+                catch (e)
+                {
+                    error.innerText = e;
+                }
+            }
+        </script>
+        <style>
+            #input
+            {
+                width: 100%;
+            }
+            button
+            {
+                width:100px;
+            }
+            #error
+            {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <textarea id="input"></textarea>
+        <button onclick="parse()">Parse</button>
+        <p id="error"></p>
+        <div id="output"></div>
+    </body>
+</html>

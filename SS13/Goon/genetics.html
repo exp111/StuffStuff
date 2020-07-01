@@ -78,6 +78,7 @@
                     let comp = document.createElement("li");
                     comp.innerText = r;
 
+                    //TODO: recursive this shit; watch out for recipe loops
                     // get the recipes which craft this result; put them in new ulist
                     let recRecipes = recipes.filter(rec => rec.result == r);
                     if (recRecipes.length > 0)
