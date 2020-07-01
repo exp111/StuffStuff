@@ -32,15 +32,61 @@ function DMParse(code)
         // Indented Line
         if (cur && line.startsWith("\t"))
         {
-            //Property //FIXME: doesn't parse multiline values
+            //TODO: comments (// & /* */)
+
+            //Property
             let r = propertyRe.exec(line);
             if (r)
             {
                 log(`Found Property ${r[1]} = ${r[2]} at line ${i}`);
                 let prop = {}
                 prop.name = r[1];
-                prop.value = parseValue(r[2]);
                 prop.line = i;
+                //INFO: Multi Lines comments start with {" and end with "}
+                if (r[2].startsWith("{\"")) //  var/desc = {"Prevents a gene from causing any genetic instability when given to an organism.
+                                            //  It will do nothing to genes that are already present in an organism."}
+                {
+                    //TODO: we assume that the first chars are {" => this isn't given
+                    let ind = r[2].indexOf(`"}`);
+                    if (ind != -1) // ends in same line
+                    {
+                        prop.value = r[2].substring(2, ind);
+                    }
+                    else
+                    {
+                        prop.value = r[2].slice(2); // remove the {"
+                        // check for multi line string end "}
+                        for (let j = i + 1; j < lines.length; j++)
+                        {
+                            if (lines[j].length == 0) //look ahead if line empty; if we go to another level then, it doesn't matter as we don't set i
+                                continue;
+
+                            let index = lines[j].indexOf(`"}`);
+                            if (index == -1) // not ending in this line
+                            {
+                                i = j;
+                                prop.value += lines[j].trim(); // remove indention
+                                prop.value += "\n"; // add new line
+                                continue;
+                            }
+
+                            // remove everything after index remove tabs
+                            prop.value += lines[j].substring(0, index).trim();
+                            i = j;
+                            break;
+                        }
+                        if (i > prop.line)
+                        {
+                            log(`Multi Line String: Skipped lines ${prop.line} to ${i} (${i - prop.line})`)
+                        }
+                    }
+                }
+                else // just parse it normally
+                {
+                    prop.value = parseValue(r[2]);
+                }
+
+                
                 cur.properties.push(prop);
                 // parsed property
                 continue;
@@ -74,7 +120,7 @@ function DMParse(code)
                 // we can't do this check inside, cuz we may run out of lines
                 if (i > method.line)
                 {
-                    log(`Skipped lines ${method.line} to ${i} (${i - method.line})`)
+                    log(`Method: Skipped lines ${method.line} to ${i} (${i - method.line})`)
                 }
 
                 cur.methods.push(method);
@@ -120,7 +166,7 @@ function parseValue(str)
     {
         let s = str.substring(5,str.length - 1); // remove "list("" and ")""
         let arr = [];
-        if (s.length == 0)
+        if (s.length == 0) // empty list
             return arr;
         
         // csv
