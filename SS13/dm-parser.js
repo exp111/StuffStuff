@@ -6,9 +6,11 @@ function DMParse(code)
     let result = []
     let cur = null;
     const classRe = /^(?:\/\w+)+$/; // /datum/bioEffect/mutantrace/ithillid
-    const methodRe = /^(\t+)(\w+)\(\)$/; //    OnAdd()
-    // match prop name, ignore spaces between name, equal & value, match value without " and \n
-    const propertyRe = /([\w]+) *= *"?([^"]+)"?/; // msgGain = "You feel wet and squishy."
+    // match tabs (only indented rn), match method name (any char & '/'), match the args (seperated by ,) in () 
+    // args: any char and maybe , => by doing .* we can also get default values for args (we don't parse methods so idc)
+    const methodRe = /^(\t+)([\w/]+)\(((?:.*,?)*)\)$/; //    OnAdd() || proc/apply(var/datum/bioEffect/BE)
+    // match prop name, ignore spaces between name, equal & value, match value till \n
+    const propertyRe = /([\w]+) *= *(.+)/; // msgGain = "You feel wet and squishy."
     for (let i = 0; i < lines.length; i++)
     {
         let line = lines[i];
@@ -30,17 +32,17 @@ function DMParse(code)
         // Indented Line
         if (cur && line.startsWith("\t"))
         {
-            //Property
+            //Property //FIXME: doesn't parse multiline values
             let r = propertyRe.exec(line);
             if (r)
             {
                 log(`Found Property ${r[1]} = ${r[2]} at line ${i}`);
                 let prop = {}
                 prop.name = r[1];
-                prop.value = r[2];
+                prop.value = parseValue(r[2]);
                 prop.line = i;
                 cur.properties.push(prop);
-                //parsed property
+                // parsed property
                 continue;
             }
 
@@ -53,10 +55,14 @@ function DMParse(code)
                 let level = r[1].length;
                 let method = {};
                 method.name = r[2];
+                method.args = r[3];
                 method.line = i;
                 //skip the func content; not interested
                 for (let j = i + 1; j < lines.length; j++)
                 {
+                    if (lines[j].length == 0) //look ahead if line empty; if we go to another level then, it doesn't matter as we don't set i
+                        continue;
+
                     // are we still indented on the func level?
                     if (lines[j].startsWith("\t".repeat(level)))
                     {
@@ -106,6 +112,29 @@ function log(text)
     }
 }
 
+function parseValue(str)
+{
+    const quoteRemoveRe = /['"]+/g;
+    //look if list
+    if (str.startsWith("list(")) //= list("strong","radioactive") //FIXME: this doesn't parse lists in lists properly
+    {
+        let s = str.substring(5,str.length - 1); // remove "list("" and ")""
+        let arr = [];
+        if (s.length == 0)
+            return arr;
+        
+        // csv
+        arr = s.split(",");
+
+        //remove quotes && spaces
+        arr = arr.map(e => e.replaceAll(quoteRemoveRe, '').trim());
+
+        return arr;
+    }
+    //remove quotes
+    return str.replace(quoteRemoveRe, '').trim();
+}
+
 function ParseTest()
 {
     let input = ```
@@ -135,5 +164,5 @@ function ParseTest()
 			overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "squidhead", layer = MOB_HAIR_LAYER2)
 		..()
 ```;
-DMParse(input);
+    DMParse(input);
 }
